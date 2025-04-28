@@ -3,12 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { SearchInput } from "./search-input";
 import { AuthButton } from "@/modules/auth/ui/components/auth-button";
+import { SpeechButton } from "@/modules/speech/ui/components/speech-button";
 import { robotoCondensed } from "@/app/layout";
 
 export const HomeNavbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 h-[56px] bg-white flex items-center px-2  pr-5 z-50">
-      <div className="flex items-center gap-4 w-full">
+      <div className="flex items-center justify-between w-full">
         {/* Sidebar and logo */}
         <div className="flex items-center flex-shrink-0">
           <SidebarTrigger />
@@ -28,10 +29,11 @@ export const HomeNavbar = () => {
         </div>
 
         {/* search bar */}
-        <div className="flex-1  max-w-[720px] mx-auto">
+        <div className="flex flex-1 items-center gap-2 min-w-[200px] max-w-[720px] w-full justify-center">
           <SearchInput />
+          <SpeechButton />
         </div>
-        <div className="flex-shrink-0 flex gap-4">
+        <div className="flex items-center flex-shrink-0 gap-4">
           <AuthButton />
         </div>
       </div>
