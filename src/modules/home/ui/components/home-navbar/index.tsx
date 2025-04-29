@@ -2,8 +2,8 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import Image from "next/image";
 import Link from "next/link";
 import { SearchInput } from "./search-input";
+import { SpeechButton } from "./speech-button";
 import { AuthButton } from "@/modules/auth/ui/components/auth-button";
-import { SpeechButton } from "@/modules/speech/ui/components/speech-button";
 import { robotoCondensed } from "@/app/layout";
 
 export const HomeNavbar = () => {
