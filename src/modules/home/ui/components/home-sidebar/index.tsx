@@ -5,7 +5,7 @@ import { PersonalSection } from "./personal-section";
 
 export const HomeSidebar = () => {
   return (
-    <Sidebar className="pt-[56px] border-none z-50">
+    <Sidebar className="top-[56px] border-none z-50">
       <SidebarContent className="bg-background">
         <MainSection />
         {/* The line for separating sections */}
