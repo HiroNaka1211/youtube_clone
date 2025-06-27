@@ -9,7 +9,7 @@ import { robotoCondensed } from "@/app/layout";
 export const HomeNavbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 h-[56px] bg-white flex items-center px-2  pr-5 z-50">
-      <div className="flex items-center justify-between w-full">
+      <div className="flex items-center justify-between w-full gap-x-16">
         {/* Sidebar and logo */}
         <div className="flex items-center flex-shrink-0">
           <SidebarTrigger />
