@@ -1,3 +1,12 @@
+This project is based on a YouTube tutorial by [JavaScript Mastery](https://www.youtube.com/@javascriptmastery):
+
+🎥 [Build and Deploy a Modern Full‑Stack Web App (Youtube clone) using Next.js 15, Sanity, Tailwind CSS, and Clerk](https://www.youtube.com/watch?v=ArmPzvHTcfQ)
+
+This project was created for educational purposes only.  
+All credit goes to the original creator.
+
+I’ve made some customizations, but much of the structure and logic follows the original tutorial.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
