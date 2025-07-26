@@ -1,5 +1,9 @@
 "use client";
 
+import { HistoryIcon, ListVideoIcon, ThumbsUpIcon } from "lucide-react";
+import Link from "next/link";
+//useAuth = the status of the user, useClerk = for access to the functions of clerk
+import { useAuth, useClerk } from "@clerk/nextjs";
 import {
   SidebarGroup,
   SidebarGroupContent,
@@ -8,8 +12,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { HistoryIcon, ListVideoIcon, ThumbsUpIcon } from "lucide-react";
-import Link from "next/link";
 
 // The list of the contents of sidebar (personal)
 // This is showed only whne the users logged in
@@ -36,6 +38,10 @@ const items = [
 ];
 
 export const PersonalSection = () => {
+  const clerk = useClerk();
+  //The user is signed in or not
+  const { isSignedIn } = useAuth();
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>You</SidebarGroupLabel>
@@ -48,7 +54,13 @@ export const PersonalSection = () => {
                 tooltip={item.title}
                 asChild
                 isActive={false}
-                onClick={() => {}}
+                onClick={(e) => {
+                  //If the users isn't signed, clicked the contents which have auth element in the sidebar menu, signed is modal is shown
+                  if (!isSignedIn && item.auth) {
+                    e.preventDefault();
+                    return clerk.openSignIn();
+                  }
+                }}
               >
                 <Link href={item.url}>
                   <item.icon />
