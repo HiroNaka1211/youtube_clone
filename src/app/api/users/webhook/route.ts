@@ -1,5 +1,9 @@
 import { verifyWebhook } from '@clerk/nextjs/webhooks'
 import { NextRequest } from 'next/server'
+import {eq} from 'drizzle-orm'
+
+import { db } from '@/db'
+import { users } from '@/db/schema'
 
 export async function POST(req: NextRequest) {
   try {
@@ -11,6 +15,39 @@ export async function POST(req: NextRequest) {
     const eventType = evt.type
     console.log(`Received webhook with ID ${id} and event type of ${eventType}`)
     console.log('Webhook payload:', evt.data)
+
+    //Create users
+    if(eventType === 'user.created') {
+      const {data} = evt;
+      await db.insert(users).values({
+        clerkId: data.id,
+        name: `${data.first_name} ${data.last_name}`,
+        imageUrl: data.image_url
+      })
+    }
+
+    //Delete users
+    if(eventType === 'user.deleted') {
+      const {data} = evt;
+
+      if(!data.id){
+        return new Response("Missing user id", {status:400});
+      }
+
+      await db.delete(users).where(eq(users.clerkId, data.id));
+    }
+
+    //Update registered users
+    if(eventType === 'user.updated') {
+      const {data} = evt;
+      await db
+      .update(users)
+      .set({
+        name: `${data.first_name} ${data.last_name}`,
+        imageUrl: data.image_url
+      })
+      .where(eq(users.clerkId, data.id));
+    }
 
     return new Response('Webhook received', { status: 200 })
   } catch (err) {
